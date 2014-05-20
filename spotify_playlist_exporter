@@ -31,7 +31,7 @@
 #               multiline entry field. Make sure to also enter a name for the playlist. Then
 #               hit 'OK'.
 #
-# WARNING:      Because the script queries the spotify webpage for each URL, fetching track data
+# WARNING:      Because the script queries each URL separately, fetching track data
 #               for larger playlists may take quite a while.
 
 ############# GLOBVAR/PREP ###############

@@ -6,7 +6,7 @@
 
 ![image of progress window](https://raw.githubusercontent.com/Glutanimate/spotify_playlist_exporter/master/spotify_playlist_exporter_progress.png)
 
-This script exports Spotify playlists to a plain textfile. It works by iterating through Spotify URLs and extracting the track data from the title of the webpage. **WARNING: This a very crude, slow and inefficient script** but it works.
+This script exports Spotify playlists to a plain textfile. It works by iterating through Spotify URLs and extracting the track data from the title of the webpage. **WARNING: This a very crude, slow and inefficient script**, but it works.
 
 ###Overview
 
@@ -38,10 +38,10 @@ This script exports Spotify playlists to a plain textfile. It works by iterating
     #               PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
     #
     # USAGE:        Select all items in your Spotify playlist, copy them, and paste the output in the
-    #               multiline entry field. Make sure to also enter a name for the playlist. Then
+    #               multiline entry field. Make sure to enter a name for the playlist. Then
     #               hit 'OK'.
     #
-    # WARNING:      Because the script queries the spotify webpage for each URL fetching track data
+    # WARNING:      Because the script queries each URL separately, fetching track data
     #               for larger playlists may take quite a while.
 
 ###Changelog
@@ -73,10 +73,10 @@ Spotify Playlist Epxorter should now appear in your launcher (e.g. Unity dash).
 
 ###Usage
 
-Select all items in your Spotify playlist, copy them, and paste the output in the multiline entry field. Make sure to also enter a name for the playlist. Then hit 'OK'.
+Select all items in your Spotify playlist, copy them, and paste the output in the multiline entry field. Make sure to enter a name for the playlist. Then hit 'OK'.
 
 ###Common issues
 
 **The script is very slow**
 
-Because the script queries the spotify webpage for each URL fetching track data for larger playlists may take quite a while.
+Because the script queries each URL separately, fetching track data for larger playlists may take quite a while.
