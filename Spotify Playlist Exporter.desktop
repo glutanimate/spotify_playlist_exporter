@@ -1,0 +1,10 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Type=Application
+Terminal=false
+Exec=spotify_playlist_exporter
+Name=Spotify Playlist Exporter
+Comment=Parses Spotify URLs and exports track data to a plain text file
+Icon=spotify
