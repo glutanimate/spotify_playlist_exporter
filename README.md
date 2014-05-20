@@ -2,7 +2,9 @@
 
 ###Description
 
-![image of main interface]()
+![image of main interface](https://raw.githubusercontent.com/Glutanimate/spotify_playlist_exporter/master/spotify_playlist_exporter_main.png)
+
+![image of progress window](https://raw.githubusercontent.com/Glutanimate/spotify_playlist_exporter/master/spotify_playlist_exporter_progress.png)
 
 This script exports Spotify playlists to a plain textfile. It works by iterating through Spotify URLs and extracting the track data from the title of the webpage. **WARNING: This a very crude, slow and inefficient script** but it works.
 
