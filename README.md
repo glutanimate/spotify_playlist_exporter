@@ -16,7 +16,7 @@ This script exports Spotify playlists to a plain textfile. It works by iterating
     # DESCRIPTION:  Exports spotify playlists to a plain textfile
     # CHANGELOG:    -- 0.2 - Script now uses Spotify's web API
     #               -- 0.1 - Initial release
-    # DEPENDENCIES: recode curl yad jq
+    # DEPENDENCIES: curl yad jq
     # SOURCES:      https://developer.spotify.com/technologies/web-api/lookup/
     #
     # LICENSE:      GNU GPLv3 (http://www.gnu.de/documents/gpl-3.0.en.html)
@@ -51,9 +51,9 @@ This script exports Spotify playlists to a plain textfile. It works by iterating
 
 ###Dependencies
 
-recode, curl and jq should be available in your standard repositories. You can install them with
+`curl` and `jq` should be available in your standard repositories. You can install them with
 
-    sudo apt-get install recode curl jq
+    sudo apt-get install curl jq
    
 [YAD](http://sourceforge.net/projects/yad-dialog/) is an advanced fork of Zenity. Unfortunately it hasn't arrived in the Debian/Ubuntu repos yet but luckily enough the folks over at www.webupd8.com created a PPA for it. You can add the YAD PPA and install YAD with:
 

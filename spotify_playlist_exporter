@@ -6,7 +6,7 @@
 # DESCRIPTION:  Exports spotify playlists to a plain textfile
 # CHANGELOG:    -- 0.2 - Script now uses Spotify's web API
 #               -- 0.1 - Initial release
-# DEPENDENCIES: recode curl yad jq
+# DEPENDENCIES: curl yad jq
 # SOURCES:      https://developer.spotify.com/technologies/web-api/lookup/
 #
 # LICENSE:      GNU GPLv3 (http://www.gnu.de/documents/gpl-3.0.en.html)
