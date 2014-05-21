@@ -6,17 +6,18 @@
 
 ![image of progress window](https://raw.githubusercontent.com/Glutanimate/spotify_playlist_exporter/master/spotify_playlist_exporter_progress.png)
 
-This script exports Spotify playlists to a plain textfile. It works by iterating through Spotify URLs and extracting the track data from the title of the webpage. **WARNING: This a very crude, slow and inefficient script**, but it works.
+This script exports Spotify playlists to a plain textfile. It works by iterating through Spotify URIs and querying Spotify's web API for the track data.
 
 ###Overview
 
     # NAME:         spotify_playlist_exporter
-    # VERSION:      0.1
+    # VERSION:      0.2
     # AUTHOR:       (c) 2014 Glutanimate <https://github.com/Glutanimate/>
     # DESCRIPTION:  Exports spotify playlists to a plain textfile
-    # FEATURES:     
-    # DEPENDENCIES: recode curl yad
-    # SOURCES:      http://www.commandlinefu.com/commands/view/5413/extract-title-from-html-files
+    # CHANGELOG:    -- 0.2 - Script now uses Spotify's web API
+    #               -- 0.1 - Initial release
+    # DEPENDENCIES: recode curl yad jq
+    # SOURCES:      https://developer.spotify.com/technologies/web-api/lookup/
     #
     # LICENSE:      GNU GPLv3 (http://www.gnu.de/documents/gpl-3.0.en.html)
     #
@@ -37,23 +38,22 @@ This script exports Spotify playlists to a plain textfile. It works by iterating
     #               PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER 
     #               PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
     #
-    # USAGE:        Select all items in your Spotify playlist, copy them, and paste the output in the
-    #               multiline entry field. Make sure to enter a name for the playlist. Then
-    #               hit 'OK'.
-    #
-    # WARNING:      Because the script queries each URL separately, fetching track data
-    #               for larger playlists may take quite a while.
+    # USAGE:        Select all items in your Spotify playlist, right click and select 'Copy Spotify URIs',
+    #               paste the output in them ultiline entry field. Make sure to also enter a name for the 
+    #               playlist. Then hit 'OK'.
 
 ###Changelog
 
+- 0.2
+    - the script now uses Spotify's web API. Everything should be much faster.
 - 0.1 
     - initial release
 
 ###Dependencies
 
-recode and curl should be available in your standard repositories. You can install them with
+recode, curl and jq should be available in your standard repositories. You can install them with
 
-    sudo apt-get install recode curl
+    sudo apt-get install recode curl jq
    
 [YAD](http://sourceforge.net/projects/yad-dialog/) is an advanced fork of Zenity. Unfortunately it hasn't arrived in the Debian/Ubuntu repos yet but luckily enough the folks over at www.webupd8.com created a PPA for it. You can add the YAD PPA and install YAD with:
 
@@ -77,6 +77,6 @@ Select all items in your Spotify playlist, copy them, and paste the output in th
 
 ###Common issues
 
-**The script is very slow**
+**The playlist export is taking very long to complete**
 
-Because the script queries each URL separately, fetching track data for larger playlists may take quite a while.
+`spotify_playlist_exporter` fetches the track data for each item separately. This might take a while with larger playlists.

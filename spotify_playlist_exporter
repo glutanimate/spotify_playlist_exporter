@@ -1,12 +1,13 @@
 #!/bin/bash
 
 # NAME:         spotify_playlist_exporter
-# VERSION:      0.1
+# VERSION:      0.2
 # AUTHOR:       (c) 2014 Glutanimate <https://github.com/Glutanimate/>
 # DESCRIPTION:  Exports spotify playlists to a plain textfile
-# FEATURES:     
-# DEPENDENCIES: recode curl yad
-# SOURCES:      http://www.commandlinefu.com/commands/view/5413/extract-title-from-html-files
+# CHANGELOG:    -- 0.2 - Script now uses Spotify's web API
+#               -- 0.1 - Initial release
+# DEPENDENCIES: recode curl yad jq
+# SOURCES:      https://developer.spotify.com/technologies/web-api/lookup/
 #
 # LICENSE:      GNU GPLv3 (http://www.gnu.de/documents/gpl-3.0.en.html)
 #
@@ -27,16 +28,14 @@
 #               PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER 
 #               PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #
-# USAGE:        Select all items in your Spotify playlist, copy them, and paste the output in the
-#               multiline entry field. Make sure to also enter a name for the playlist. Then
-#               hit 'OK'.
-#
-# WARNING:      Because the script queries each URL separately, fetching track data
-#               for larger playlists may take quite a while.
+# USAGE:        Select all items in your Spotify playlist, right click and select 'Copy Spotify URIs',
+#               paste the output in them ultiline entry field. Make sure to also enter a name for the 
+#               playlist. Then hit 'OK'.
 
 ############# GLOBVAR/PREP ###############
 
 DEFAULT_BACKUP_FOLDER="$HOME/Music/Playlists/Spotify"
+LOOKUP_API="http://ws.spotify.com/lookup/1/.json?uri="
 
 #############  LIBRARIES  ################
 
@@ -47,9 +46,9 @@ TITLE="Spotify Playlist Exporter"
 WMCLASS="SpotifyPlaylistExporter"
 
 TXT_GUI_ENTRY="Please enter the <b>playlist name</b>. Then copy and paste the <b>Spotify \
-URLs</b> in the multiline entry below."
+URIs</b> in the multiline entry below."
 
-TXT_GUI_PROGRESS="Processing URL list..."
+TXT_GUI_PROGRESS="Processing URI list..."
 
 ############## USGCHECKS #################
 
@@ -102,9 +101,9 @@ gui_url_entry(){
     
     EXPORTFOLDER="$(echo "$GUI_OPTIONS" | cut -d '|' -f3)"
     PLNAME="$(echo "$GUI_OPTIONS" | cut -d '|' -f4)"
-    URLINPUT="$(echo "$GUI_OPTIONS" | cut -d '|' -f5)"
+    URIINPUT="$(echo "$GUI_OPTIONS" | cut -d '|' -f5)"
     
-    if [[ -z "$URLINPUT" || -z "$PLNAME" || -z "$EXPORTFOLDER" ]]
+    if [[ -z "$URIINPUT" || -z "$PLNAME" || -z "$EXPORTFOLDER" ]]
       then
           gui_show_error "WARNING: Please make sure to fill out all fields."
           gui_url_entry
@@ -118,16 +117,16 @@ iterate_over_input(){
     # set up loop variables
     OLDIFS="$IFS"
     IFS=" "
-    URLS_CURRENT="0"
-    URLS_TOTAL="$(echo "$URLINPUT" | wc -w)"
+    URIS_CURRENT="0"
+    URIS_TOTAL="$(echo "$URIINPUT" | wc -w)"
     
     # iterate over URLs, extract track data and echo progress
-    for SPOTIFY_URL in $URLINPUT; do
+    for SPOTIFY_URI in $URIINPUT; do
       get_music_data
       
-      URLS_CURRENT="$(($URLS_CURRENT + 1))"
-      PROGRESS="$((( 100 * $URLS_CURRENT ) / $URLS_TOTAL))"
-      printf "1:$PROGRESS\n1:#$URLS_CURRENT out of $URLS_TOTAL processed\n"
+      URIS_CURRENT="$(($URIS_CURRENT + 1))"
+      PROGRESS="$((( 100 * $URIS_CURRENT ) / $URIS_TOTAL))"
+      printf "1:$PROGRESS\n1:#$URIS_CURRENT out of $URIS_TOTAL processed\n"
       
     done
     
@@ -151,24 +150,28 @@ iterate_over_input(){
 # cf. http://stackoverflow.com/q/6662915/1708932)
 
 get_music_data(){
-    SPOTIFY_HTML="$(curl "$SPOTIFY_URL" 2>&1)"
+    SPOTIFY_JSON="$(curl -s "${LOOKUP_API}${SPOTIFY_URI}")"
     RET_CURL="$?"
     
     if [[ "$RET_CURL" -ne "0" ]]
       then
-          echo "Error while fetching track data for $SPOTIFY_URL" \
+          echo "Error while fetching track data for $SPOTIFY_URI" \
            | tee -a "$EXPORTFOLDER/spotify_export_$PLNAME.txt"
           ERROR="1"
           continue
     fi
     
-    TRACKDATA="$(echo "$SPOTIFY_HTML" \
-     | awk 'BEGIN{IGNORECASE=1;FS="<title>|</title>";RS=EOF} {print $2}' \
-     | sed '/^$/d' \
-     | sed 's/ on Spotify//g' \
-     | recode html..ISO-8859-1)"
-     
-    echo "$TRACKDATA|$SPOTIFY_URL"| tee -a "$EXPORTFOLDER/spotify_export_$PLNAME.csv"
+    ARTISTS="$(echo $SPOTIFY_JSON | jq '.track.artists' | sed -n -e 's/^.*\"name\": //p' \
+    | sed 's/\"//g' | sed 's/\,//g' | sed ':a;N;$!ba;s/\n/, /g')"
+    # explanation for sed command-line:
+    # - match all lines that include the "name" tag, print the value
+    # - remove double quotes
+    # - remove commas
+    # - replace all newlines aside from the last by ", "
+    ALBUM="$(echo "$SPOTIFY_JSON" | jq '.track.album.name' | sed 's/\"//g')"
+    TRACK="$(echo "$SPOTIFY_JSON" | jq '.track.name' | sed 's/\"//g')"
+    
+    echo "$TRACK|$ARTISTS|$ALBUM|$SPOTIFY_URI" | tee -a "$EXPORTFOLDER/spotify_export_$PLNAME.csv"
 }
 
 ################ MAIN ####################
