@@ -124,8 +124,8 @@ iterate_over_input(){
     for SPOTIFY_URI in $URIINPUT; do
       get_music_data
       
-      URIS_CURRENT="$(($URIS_CURRENT + 1))"
-      PROGRESS="$((( 100 * $URIS_CURRENT ) / $URIS_TOTAL))"
+      URIS_CURRENT="$((URIS_CURRENT + 1))"
+      PROGRESS="$((( 100 * URIS_CURRENT ) / URIS_TOTAL))"
       printf "1:$PROGRESS\n1:#$URIS_CURRENT out of $URIS_TOTAL processed\n"
       
     done
@@ -161,7 +161,7 @@ get_music_data(){
           continue
     fi
     
-    ARTISTS="$(echo $SPOTIFY_JSON | jq '.track.artists' | sed -n -e 's/^.*\"name\": //p' \
+    ARTISTS="$(echo "$SPOTIFY_JSON" | jq '.track.artists' | sed -n -e 's/^.*\"name\": //p' \
     | sed 's/\"//g' | sed 's/\,//g' | sed ':a;N;$!ba;s/\n/, /g')"
     # explanation for sed command-line:
     # - match all lines that include the "name" tag, print the value
