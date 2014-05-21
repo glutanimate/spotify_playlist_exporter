@@ -109,6 +109,8 @@ This product uses a Spotify API but is not endorsed, certified or otherwise appr
 
 - [spotify-export](https://github.com/jlund/spotify-export) by jlund - very similar utility; coded in Ruby; caches playlist data in a database to accelerate frequent backups
 
+- [Spotify Playlist Converter](http://www.spotifyconverter.com/) by HeDo - new web service that exports Spotify tracks to CSV
+
 - [Spotify Playlist Extractor](https://chrome.google.com/webstore/detail/spotify-playlist-extracto/onglffcjldphmpfnpdfmngfenhmjlnnn) by Julian Xhokaxhiu - Chrome extension that exports Spotify playlists to JSON/M3U. Did not work for me but it might work on your system.
 
 - [export-spotify-playlist-to-csv-with-csv-library.py](http://victorwyee.com/python/export-spotify-playlist-to-csv-with-python/) by Victor W. Yee - I have yet to try this one out myself. Seems to parse the actual Spotify page of the title instead of using the API. Might be outdated (last update was in 2012)
