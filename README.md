@@ -69,11 +69,31 @@ This script exports Spotify playlists to a plain textfile. It works by iterating
 
 3. Copy `spotify_playlist_exporter.desktop` to `~/.local/share/applications` for single user installation or `/usr/local/share/applications` for multi user installation)
 
-Spotify Playlist Epxorter should now appear in your launcher (e.g. Unity dash).
+Spotify Playlist Exporter should now appear in your launcher (e.g. Unity dash).
 
 ###Usage
 
 Select all items in your Spotify playlist, copy them, and paste the output in the multiline entry field. Make sure to enter a name for the playlist. Then hit 'OK'.
+
+###Output
+
+The script will write the track data to a new CSV file in the specified folder. This is what the output looks like:
+
+    Claire De Lune|Claude Debussy|Journey To The Heart, Volume 1|spotify:track:0BeN6CA7RuwNdJa64NV1l0
+    To Build A Home|The Cinematic Orchestra|To Build A Home (Versions)|spotify:track:6LK4QAJzm6wPWITxSftVhG
+    Nocturne No. 2 in E flat Major, Op. 9,2|Frédéric Chopin|Chopin|spotify:track:6wjrQAhYkgn54EP3hGhubu
+    An Ending (Ascent)|Brian Eno|Pure Cinema Chillout|spotify:track:1sGpjDlrzobaQW6nUPmVIR
+    Moonlight Sonata: Adagio Sostenuto|Ludwig van Beethoven|Classical Best Of|spotify:track:6onVtBLxZpq4cwMa3fUMJs
+    Flower duet from Lakme - Remasterisé en 1987|Orchestre Du Théatre National De L'Opéra Comique - Alain Lombard - Mady Mesple - Danielle Millet|Classical Chillout|spotify:track:5stPdVFNnyEahYLpWs2akd
+    The Book Of Love - Live In London/2011|Peter Gabriel|Live Blood|spotify:track:0JdMl2NJftvVTuXocw1lTG
+    Blue Ridge Mountains|Fleet Foxes|Fleet Foxes|spotify:track:6T8qnBbc2rxlWLiweD1e5M
+    Divenire|Ludovico Einaudi|Divenire|spotify:track:4O0Yww5OIWyfBvWn6xN3CM
+    Comptine d'un autre été, l'après-midi|Yann Tiersen|Amelie From Montmartre|spotify:track:2AkcjsKlRbIBYGAgpQVFii
+    Ára bátur|Sigur Rós|Med sud I eyrum vid spilum endalaust|spotify:track:5MKdXkjlDvA36JE8l4A9yE
+
+You can easily import this CSV file to a Spreadsheet by setting the delimiter to `|`:
+
+![image of exported playlist in LO Calc]()
 
 ###Common issues
 
