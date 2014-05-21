@@ -28,6 +28,10 @@
 #               PROGRAM TO OPERATE WITH ANY OTHER PROGRAMS), EVEN IF SUCH HOLDER OR OTHER 
 #               PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 #
+#               This product uses a Spotify API but is not endorsed, certified or otherwise 
+#               approved in any way by Spotify. Spotify is the registered trademark of the 
+#               Spotify Group.
+#
 # USAGE:        Select all items in your Spotify playlist, right click and select 'Copy Spotify URIs',
 #               paste the output in them ultiline entry field. Make sure to also enter a name for the 
 #               playlist. Then hit 'OK'.

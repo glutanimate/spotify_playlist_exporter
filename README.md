@@ -100,3 +100,13 @@ You can easily import this CSV file to a Spreadsheet by setting the delimiter to
 **The playlist export is taking very long to complete**
 
 `spotify_playlist_exporter` fetches the track data for each item separately. This might take a while with larger playlists.
+
+###Notice
+
+This product uses a Spotify API but is not endorsed, certified or otherwise approved in any way by Spotify. Spotify is the registered trademark of the Spotify Group.
+
+###Alternatives
+
+- [spotify-export](https://github.com/jlund/spotify-export) by jlund - very similar utility; coded in Ruby; caches playlist data in a database to accelerate frequent backups
+
+- [Spotify Playlist Extractor](https://chrome.google.com/webstore/detail/spotify-playlist-extracto/onglffcjldphmpfnpdfmngfenhmjlnnn) by Julian Xhokaxhiu - Chrome extension that exports Spotify playlists to JSON/M3U. Did not work for me but it might work on your system.
