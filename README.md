@@ -93,7 +93,7 @@ The script will write the track data to a new CSV file in the specified folder. 
 
 You can easily import this CSV file to a Spreadsheet by setting the delimiter to `|`:
 
-![image of exported playlist in LO Calc]()
+![image of exported playlist in LO Calc](https://raw.githubusercontent.com/Glutanimate/spotify_playlist_exporter/master/spotify_playlist_exporter_localc.png)
 
 ###Common issues
 
